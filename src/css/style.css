@@ -1,0 +1,40 @@
+body{
+    margin: 0;
+    font-family: fantasy;
+}
+
+.game{
+    background-image: url("../images/backgraund-gamepng.png");
+    width: 100vw;
+    height: 100vh;
+}
+
+.start-screen{
+    padding: 2%;
+    text-align: center;
+    background-color: rgb(95, 95, 245);
+    font-size: 50px;
+    position: absolute;
+    left: 50%;   
+    transform: translate(-50%);
+    top: 350px;
+}
+
+.start-screen:hover{
+    background-color: rgb(84, 84, 185);
+    cursor: pointer;
+}
+
+ .hidden{
+    display: none;
+    
+}
+
+.wizzard{
+    display: block;
+    text-align: center;
+    background-image: url("../images/wizard.png");
+    height: 150px;
+    width: 150px;
+} 
+
