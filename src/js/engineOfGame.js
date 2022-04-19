@@ -1,4 +1,3 @@
-
 export function startGame(element) {
     element.remove();
 
@@ -13,8 +12,6 @@ export function startGame(element) {
 
     wizard.style.left = wizardPosition.startX + "px";
     wizard.style.top = wizardPosition.startY + "px";
-
-    console.log(wizard.style.top);
 
     game.appendChild(wizard);
     //start game
