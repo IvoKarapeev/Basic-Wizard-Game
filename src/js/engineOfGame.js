@@ -6,8 +6,9 @@ export function startGame(element) {
 
     const wizardPosition = {
         startX:200,
-        startY:300
-        
+        startY:300,
+        posX: 200,
+        posY: 300
     };
 
     wizard.style.left = wizardPosition.startX + "px";
@@ -37,17 +38,28 @@ export function startGame(element) {
         
         if (availableKeys.includes(ev.code)) {
             keys[ev.code] = true;
-            console.log(keys);
-        }
+            console.log(ev.code);
+            if (ev.code === "KeyD") {
+                wizardPosition.posX += 10;
+                wizard.style.left = wizardPosition.posX + "px";
+                console.log(wizardPosition.posX);
+                console.log(wizard.style.left);
+            }
+
+        };
+
+        
 
     });
 
-    document.addEventListener('keyup', (e) => {
-        if (availableKeys.includes(e.code)) {
-            keys[e.code] = false;
-            console.log(keys);
-        }
-    });
+    // document.addEventListener('keyup', (e) => {
+    //     if (availableKeys.includes(e.code)) {
+    //         keys[e.code] = false;
+    //         console.log(keys);
+    //     }
+    // });
+
+
     
 };
 
