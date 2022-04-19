@@ -1,11 +1,24 @@
 
 export function startGame(element) {
-    element.className = "hidden";
+    element.remove();
 
     const wizard = makeWizard();
     const game = document.getElementsByClassName("game")[0];
 
+    const wizardPosition = {
+        startX:200,
+        startY:300
+        
+    };
+
+    wizard.style.left = wizardPosition.startX + "px";
+    wizard.style.top = wizardPosition.startY + "px";
+
+    console.log(wizard.style.top);
+
     game.appendChild(wizard);
+    //start game
+    
    
 };
 

@@ -34,6 +34,7 @@ body{
     display: block;
     text-align: center;
     background-image: url("../images/wizard.png");
+    position: absolute;
     height: 150px;
     width: 150px;
 } 
