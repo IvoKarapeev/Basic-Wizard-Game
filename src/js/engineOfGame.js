@@ -37,14 +37,27 @@ export function startGame(element) {
     document.addEventListener("keydown", (ev) => {
         
         if (availableKeys.includes(ev.code)) {
-            keys[ev.code] = true;
-            console.log(ev.code);
+            keys[ev.code] = true;;
             if (ev.code === "KeyD") {
                 wizardPosition.posX += 10;
                 wizard.style.left = wizardPosition.posX + "px";
-                console.log(wizardPosition.posX);
-                console.log(wizard.style.left);
-            }
+            };
+
+            if (ev.code === "KeyW") {
+                wizardPosition.posY -= 10;
+                wizard.style.top = wizardPosition.posY + "px";
+            };
+
+            if (ev.code === "KeyA") {
+                wizardPosition.posX -= 10;
+                wizard.style.left = wizardPosition.posX + "px";
+            };
+
+            if (ev.code === "KeyS") {
+                wizardPosition.posY += 10;
+                wizard.style.top = wizardPosition.posY + "px";
+            };
+
 
         };
 
