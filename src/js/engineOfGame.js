@@ -15,8 +15,40 @@ export function startGame(element) {
 
     game.appendChild(wizard);
     //start game
+
+        
+    const availableKeys = [
+        'KeyA',
+        'KeyS',
+        'KeyD',
+        'KeyW',
+        'Space'
+    ];
+
+    const keys = {
+        KeyA: false,
+        KeyS: false,
+        KeyD: false,
+        KeyW: false,
+        Space: false,
+    }
+        
+    document.addEventListener("keydown", (ev) => {
+        
+        if (availableKeys.includes(ev.code)) {
+            keys[ev.code] = true;
+            console.log(keys);
+        }
+
+    });
+
+    document.addEventListener('keyup', (e) => {
+        if (availableKeys.includes(e.code)) {
+            keys[e.code] = false;
+            console.log(keys);
+        }
+    });
     
-   
 };
 
 
