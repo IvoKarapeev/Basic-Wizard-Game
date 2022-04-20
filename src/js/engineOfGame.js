@@ -2,6 +2,7 @@ export function startGame(element) {
     element.remove();
 
     const wizard = makeWizard();
+    const ghost = makeGhost();
     const game = document.getElementsByClassName("game")[0];
 
     const wizardPosition = {
@@ -15,7 +16,12 @@ export function startGame(element) {
     wizard.style.left = wizardPosition.startX + "px";
     wizard.style.top = wizardPosition.startY + "px";
 
+    
     game.appendChild(wizard);
+    game.appendChild(ghost);
+    
+    ghost.style.left = game.offsetWidth - ghost.offsetWidth + "px";
+    ghost.style.top = Math.floor(Math.random() * game.offsetHeight - ghost.offsetHeight) + "px";
     //start game
 
         
@@ -66,14 +72,6 @@ export function startGame(element) {
 
     });
 
-    // document.addEventListener('keyup', (e) => {
-    //     if (availableKeys.includes(e.code)) {
-    //         keys[e.code] = false;
-    //         console.log(keys);
-    //     }
-    // });
-
-
     
 };
 
@@ -85,3 +83,12 @@ function makeWizard() {
 
     return wizardDiv;
 };
+
+function makeGhost() {
+    
+    const ghostDiv = document.createElement("div");
+    ghostDiv.className = "ghost";
+
+    return ghostDiv;
+
+}

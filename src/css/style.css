@@ -39,3 +39,10 @@ body{
     width: 150px;
 } 
 
+.ghost{
+    background-size: cover;
+    background-image: url("../images/ghost.png");
+    position: absolute;
+    height: 70px;
+    width: 70px;
+}
