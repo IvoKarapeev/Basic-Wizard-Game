@@ -2,8 +2,8 @@ export function startGame(element) {
     element.remove();
 
     const wizard = makeWizard();
-    const ghost = makeGhost();
     const game = document.getElementsByClassName("game")[0];
+    let gameOver = false;
 
     const wizardPosition = {
         startX:200,
@@ -18,13 +18,23 @@ export function startGame(element) {
 
     
     game.appendChild(wizard);
-    game.appendChild(ghost);
-    
-    ghost.style.left = game.offsetWidth - ghost.offsetWidth + "px";
-    ghost.style.top = Math.floor(Math.random() * game.offsetHeight - ghost.offsetHeight) + "px";
-    //start game
 
+
+    
+    function spawnGhost() {
         
+        const ghost = makeGhost();
+        game.appendChild(ghost);
+        
+        ghost.style.left = game.offsetWidth - ghost.offsetWidth + "px";
+        ghost.style.top = Math.floor(Math.random() * game.offsetHeight - ghost.offsetHeight) + "px";
+
+        if (gameOver !== false) {
+            
+        }
+
+    }
+    
     const availableKeys = [
         'KeyA',
         'KeyS',
@@ -72,6 +82,14 @@ export function startGame(element) {
 
     });
 
+    setTimeout(function doSomething() {
+       if (gameOver === false) {
+        spawnGhost();
+        setTimeout(doSomething, 3000);
+       }else{
+           
+       }
+    }, 3000);
     
 };
 
