@@ -8,7 +8,8 @@ export function startGame(element) {
         startX:200,
         startY:300,
         posX: 200,
-        posY: 300
+        posY: 300,
+        speed:10
     };
 
     wizard.style.left = wizardPosition.startX + "px";
@@ -39,22 +40,22 @@ export function startGame(element) {
         if (availableKeys.includes(ev.code)) {
             keys[ev.code] = true;;
             if (ev.code === "KeyD") {
-                wizardPosition.posX += 10;
+                wizardPosition.posX = Math.min(wizardPosition.posX + wizardPosition.speed , game.offsetWidth - wizard.offsetWidth);
                 wizard.style.left = wizardPosition.posX + "px";
             };
 
             if (ev.code === "KeyW") {
-                wizardPosition.posY -= 10;
+                wizardPosition.posY = Math.max(wizardPosition.posY - wizardPosition.speed , 0);
                 wizard.style.top = wizardPosition.posY + "px";
             };
 
             if (ev.code === "KeyA") {
-                wizardPosition.posX -= 10;
+                wizardPosition.posX = Math.max(wizardPosition.posX - wizardPosition.speed , 0);;
                 wizard.style.left = wizardPosition.posX + "px";
             };
 
             if (ev.code === "KeyS") {
-                wizardPosition.posY += 10;
+                wizardPosition.posY = Math.min(wizardPosition.posY + wizardPosition.speed , game.offsetHeight - wizard.offsetHeight);
                 wizard.style.top = wizardPosition.posY + "px";
             };
 
