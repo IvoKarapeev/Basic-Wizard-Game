@@ -118,8 +118,12 @@ export function startGame(element) {
         document.querySelectorAll('.ghost').forEach(ghost => {
            
             let posX = parseInt(ghost.style.left);
-            
-            ghost.style.left = posX - ghostObject.speed + 'px';
+            if (posX > 0) {
+
+                ghost.style.left = posX - ghostObject.speed + 'px';                
+            } else {
+                ghost.remove();
+            }
     
             
         
