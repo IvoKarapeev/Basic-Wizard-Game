@@ -27,7 +27,7 @@ export function startGame(element) {
         game.appendChild(ghost);
         
         ghost.style.left = game.offsetWidth - ghost.offsetWidth + "px";
-        ghost.style.top = Math.floor(Math.random() * game.offsetHeight - ghost.offsetHeight) + "px";
+        ghost.style.top = Math.floor(Math.random() * (game.offsetHeight - ghost.offsetHeight)) + "px";
 
         if (gameOver !== false) {
             
