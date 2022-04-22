@@ -10,7 +10,7 @@ export function startGame(element) {
         startY:300,
         posX: 200,
         posY: 300,
-        speed:10
+        speed:20
     };
 
     wizard.style.left = wizardPosition.startX + "px";
@@ -49,7 +49,12 @@ export function startGame(element) {
         KeyD: false,
         KeyW: false,
         Space: false,
-    }
+    };
+
+
+    const ghostObject = {
+        speed : 30
+    };
         
     document.addEventListener("keydown", (ev) => {
         
@@ -82,15 +87,46 @@ export function startGame(element) {
 
     });
 
-    setTimeout(function doSomething() {
-       if (gameOver === false) {
-        spawnGhost();
-        setTimeout(doSomething, 3000);
-       }else{
+    //Make Ghost Movement
+    setTimeout(function moveGhosts() {
+        if (gameOver === false) {
+        
+         ghostMovement();
+         setTimeout(moveGhosts, 100);
+        }else{
+            
+        }
+     }, 3000);
+
+
+    //Spawn ghost on random places
+    setTimeout(function randomGhostSpawn() {
+        if (gameOver === false) {
+        
+         spawnGhost();
+ 
+         setTimeout(randomGhostSpawn, 1500);
+        }else{
+            
+        }
+     }, 3000);
+
+    console.log(123);
+  
+    function ghostMovement() {
+
+        document.querySelectorAll('.ghost').forEach(ghost => {
            
-       }
-    }, 3000);
+            let posX = parseInt(ghost.style.left);
+            
+            ghost.style.left = posX - ghostObject.speed + 'px';
     
+            
+        
+           });
+
+    }
+
 };
 
 
