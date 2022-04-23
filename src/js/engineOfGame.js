@@ -55,6 +55,10 @@ export function startGame(element) {
     const ghostObject = {
         speed : 30
     };
+
+    const fireballObj = {
+        speed : 50
+    };
         
     document.addEventListener("keydown", (ev) => {
         
@@ -103,7 +107,6 @@ export function startGame(element) {
         }
      }, 3000);
 
-
     //Spawn ghost on random places
     setTimeout(function randomGhostSpawn() {
         if (gameOver === false) {
@@ -115,6 +118,17 @@ export function startGame(element) {
             
         }
      }, 3000);
+
+    //Make Fireball Movement
+    setTimeout(function moveFireball() {
+    if (gameOver === false) {
+    
+        fireBallMovement();
+        setTimeout(moveFireball, 100);
+    }else{
+        
+    }
+    }, 100);
   
     function ghostMovement() {
 
@@ -132,7 +146,27 @@ export function startGame(element) {
         
            });
 
+    };
+
+    function fireBallMovement() {
+        
+        
+        document.querySelectorAll('.fireball').forEach(fireball => {
+           
+            let posX = parseInt(fireball.style.left);
+
+            // console.log(posX);
+
+            if(posX > game.offsetWidth){
+                fireball.remove();
+            }else{
+                fireball.style.left = posX + fireballObj.speed + 'px';                
+            }
+
+        });
+
     }
+
 
 };
 
@@ -159,16 +193,9 @@ function makeFireball(wizardPossitions,gameScreen,wizard) {
     const fireballElement = document.createElement("div");
     fireballElement.className = "fireball";
 
-    //position fireball
-
-
     fireballElement.style.left = wizardPossitions.posX + wizard.offsetWidth + "px";
     fireballElement.style.top = wizardPossitions.posY + wizard.offsetHeight / 4.7 + "px";
 
-
-    // console.log(wizard,gameScreen,fireballElement);
-    // console.log(wizard.offsetHeight);
-    //append on screen
     gameScreen.appendChild(fireballElement);
 
 }   
