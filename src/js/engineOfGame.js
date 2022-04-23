@@ -80,6 +80,11 @@ export function startGame(element) {
                 wizard.style.top = wizardPosition.posY + "px";
             };
 
+            if (ev.code === "Space") {
+                const fireBall = makeFireball(wizardPosition,game,wizard);
+
+                console.log("Space");
+            };
 
         };
 
@@ -110,8 +115,6 @@ export function startGame(element) {
             
         }
      }, 3000);
-
-    console.log(123);
   
     function ghostMovement() {
 
@@ -149,4 +152,23 @@ function makeGhost() {
 
     return ghostDiv;
 
-}
+};
+
+function makeFireball(wizardPossitions,gameScreen,wizard) {
+    
+    const fireballElement = document.createElement("div");
+    fireballElement.className = "fireball";
+
+    //position fireball
+
+
+    fireballElement.style.left = wizardPossitions.posX + wizard.offsetWidth + "px";
+    fireballElement.style.top = wizardPossitions.posY + wizard.offsetHeight / 4.7 + "px";
+
+
+    // console.log(wizard,gameScreen,fireballElement);
+    // console.log(wizard.offsetHeight);
+    //append on screen
+    gameScreen.appendChild(fireballElement);
+
+}   

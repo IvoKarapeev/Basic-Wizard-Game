@@ -46,3 +46,11 @@ body{
     height: 70px;
     width: 70px;
 }
+
+.fireball{
+    background-size: cover;
+    background-image: url("../images/fire-ball.png");
+    position: absolute;
+    width: 20px;
+    height: 20px;
+}
