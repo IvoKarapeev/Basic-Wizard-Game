@@ -53,11 +53,11 @@ export function startGame(element) {
 
 
     const ghostObject = {
-        speed : 30
+        speed : 20
     };
 
     const fireballObj = {
-        speed : 50
+        speed : 30
     };
         
     document.addEventListener("keydown", (ev) => {
@@ -86,8 +86,6 @@ export function startGame(element) {
 
             if (ev.code === "Space") {
                 const fireBall = makeFireball(wizardPosition,game,wizard);
-
-                console.log("Space");
             };
 
         };
@@ -101,7 +99,7 @@ export function startGame(element) {
         if (gameOver === false) {
         
          ghostMovement();
-         setTimeout(moveGhosts, 100);
+         setTimeout(moveGhosts, 50);
         }else{
             
         }
@@ -124,7 +122,7 @@ export function startGame(element) {
     if (gameOver === false) {
     
         fireBallMovement();
-        setTimeout(moveFireball, 100);
+        setTimeout(moveFireball, 50);
     }else{
         
     }
@@ -133,7 +131,6 @@ export function startGame(element) {
     function ghostMovement() {
 
         document.querySelectorAll('.ghost').forEach(ghost => {
-           
             let posX = parseInt(ghost.style.left);
             if (posX > 0) {
 
@@ -156,6 +153,13 @@ export function startGame(element) {
             let posX = parseInt(fireball.style.left);
 
             // console.log(posX);
+            document.querySelectorAll('.ghost').forEach(ghost => {
+                if (detectCollision(fireball,ghost)) {
+                    ghost.remove();
+                    fireball.remove();
+                }
+
+            });
 
             if(posX > game.offsetWidth){
                 fireball.remove();
@@ -198,4 +202,14 @@ function makeFireball(wizardPossitions,gameScreen,wizard) {
 
     gameScreen.appendChild(fireballElement);
 
-}   
+};
+
+function detectCollision(elementA,elementB) {
+ 
+    let first = elementA.getBoundingClientRect();
+    let second = elementB.getBoundingClientRect();
+
+    let itHasCollision = !(first.top > second.bottom || first.bottom < second.top || first.right < second.left || first.left > second.right) 
+
+    return itHasCollision;
+}
