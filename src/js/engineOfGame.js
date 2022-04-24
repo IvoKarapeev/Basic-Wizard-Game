@@ -85,7 +85,7 @@ export function startGame(element) {
             };
 
             if (ev.code === "Space") {
-                const fireBall = makeFireball(wizardPosition,game,wizard);
+                makeFireball(wizardPosition,game,wizard);    
             };
 
         };
@@ -107,6 +107,7 @@ export function startGame(element) {
 
     //Spawn ghost on random places
     setTimeout(function randomGhostSpawn() {
+        isGameOver();
         if (gameOver === false) {
         
          spawnGhost();
@@ -132,6 +133,12 @@ export function startGame(element) {
 
         document.querySelectorAll('.ghost').forEach(ghost => {
             let posX = parseInt(ghost.style.left);
+
+            if (detectCollision(wizard,ghost)) {
+                console.log(detectCollision(wizard,ghost));
+                gameOver = true;
+            } 
+            
             if (posX > 0) {
 
                 ghost.style.left = posX - ghostObject.speed + 'px';                
@@ -168,6 +175,14 @@ export function startGame(element) {
             }
 
         });
+
+    };
+
+    function isGameOver() {
+        
+        if (gameOver) {
+            alert("Game Over")
+        }
 
     }
 
