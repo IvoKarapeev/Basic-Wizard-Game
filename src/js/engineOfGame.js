@@ -1,10 +1,14 @@
+import { endOfGame } from "./gameOver.js";
+
 export function startGame(element) {
     element.remove();
 
     const wizard = makeWizard();
     const game = document.getElementsByClassName("game")[0];
     let gameOver = false;
-
+    let score = 0;
+    let scoreElement = document.getElementsByClassName("score")[0];
+    
     const wizardPosition = {
         startX:200,
         startY:300,
@@ -94,6 +98,16 @@ export function startGame(element) {
 
     });
 
+    //score
+    setTimeout(function scoreFunction() {
+        if (gameOver === false) {
+        
+         score++;
+         scoreElement.innerHTML = `${score} pts.`
+         setTimeout(scoreFunction, 500);
+        }
+     }, 100);
+
     //Make Ghost Movement
     setTimeout(function moveGhosts() {
         if (gameOver === false) {
@@ -135,7 +149,6 @@ export function startGame(element) {
             let posX = parseInt(ghost.style.left);
 
             if (detectCollision(wizard,ghost)) {
-                console.log(detectCollision(wizard,ghost));
                 gameOver = true;
             } 
             
@@ -164,6 +177,7 @@ export function startGame(element) {
                 if (detectCollision(fireball,ghost)) {
                     ghost.remove();
                     fireball.remove();
+                    score += 100;
                 }
 
             });
@@ -181,7 +195,13 @@ export function startGame(element) {
     function isGameOver() {
         
         if (gameOver) {
-            alert("Game Over")
+            let lastChild = game.lastElementChild; 
+            while (lastChild) {
+                lastChild.remove();
+                lastChild = game.lastElementChild; 
+            };
+
+            endOfGame(score);
         }
 
     }

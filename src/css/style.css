@@ -10,6 +10,14 @@ body{
     height: 100vh;
 }
 
+.score{
+    position: absolute;
+    top: 10px;
+    left: 1500px;
+    font-size: 23px;
+    color:rgb(63, 19, 104)
+}
+
 .start-screen{
     padding: 2%;
     text-align: center;
